@@ -12,6 +12,6 @@ app.use(express.json());
 
 
 app.get('/', (req,res)=>{
-    res.send("API is working")
+    res.send("API is working fine")
 })
 app.listen(port , ()=> console.log(`Server started on PORT:${port}`))

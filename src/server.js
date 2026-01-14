@@ -1,17 +1,19 @@
-import express from "express"
-import cors from "cors"
-import 'dotenv/config'
-import cookieParser from "cookie-parser"
+import "dotenv/config"
+import app from "./app.js"
+import connectDB from "./config/db.js";
 
-const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000;
 
-app.use(cors({credentials: true}))
-app.use(cookieParser());
-app.use(express.json());
+async function start(){
+    try{
+        app.listen(port,()=>{
+            console.log(`Server running on http://localhost:${port}`)
+        });
+    } catch(err){
+        console.error("",err);
+        process.exit(1);
+    }
+}
 
-
-app.get('/', (req,res)=>{
-    res.send("API is working fine")
-})
-app.listen(port , ()=> console.log(`Server started on PORT:${port}`))
+connectDB();
+start();
